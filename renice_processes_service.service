@@ -1,0 +1,10 @@
+[Unit]
+Description=Renice running processes
+
+[Service]
+Restart=always
+RestartSec=60
+ExecStart=/usr/bin/renice_processes_service
+
+[Install]
+WantedBy=multi-user.target

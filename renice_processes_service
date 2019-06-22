@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+aProcessesNames=($(cat /etc/))
+aProcessesNices=()
+
+for sProcessNameKey in "${!aProcessesNames[@]}"; do
+	for sProcessID in `pgrep "${aProcessesNames[$sProcessNameKey]}"`; do
+		# echo $sProcessID
+		# cat /proc/$sProcessID/cmdline
+		# echo ""
+		# sNice=`cat /proc/$sProcessID/stat | awk '{ print $19}'`
+		# if [ "$sNice" -eq "10" ]; then
+			# echo "$sNice $sProcessID"
+			# echo "renice -n ${aProcessesNices[$sProcessNameKey]} $sProcessID"
+			renice -n ${aProcessesNices[$sProcessNameKey]} $sProcessID
+		# fi
+	done
+done
