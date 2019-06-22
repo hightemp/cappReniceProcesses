@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-aProcessesNames=($(cat /etc/))
-aProcessesNices=()
+aProcessesNames=($(cat /etc/renice_processes_service/renice_processes_service.cfg | awk '{ print $1 }'))
+aProcessesNices=($(cat /etc/renice_processes_service/renice_processes_service.cfg | awk '{ print int($2) }'))
 
 for sProcessNameKey in "${!aProcessesNames[@]}"; do
 	for sProcessID in `pgrep "${aProcessesNames[$sProcessNameKey]}"`; do
